@@ -1,2 +1,2 @@
-# gymtom
+# GYMTOM
 Expo app for workout generator
