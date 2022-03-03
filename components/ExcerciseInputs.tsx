@@ -13,8 +13,8 @@ const ExcerciseInputs = ({ }) => {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#252837", elevation: 2, flexDirection: "row", alignItems: "center" },
-  label: { color: "white", fontSize: 16, padding: 8, textAlign: "left", textTransform: "uppercase" },
+  container: { flex: 1, backgroundColor: "white", elevation: 1, flexDirection: "row", alignItems: "center" },
+  label: { color: "black", fontSize: 16, padding: 8, textAlign: "left", textTransform: "uppercase" },
   input: { height: 40, fontSize: 16, margin: 8, borderWidth: 1, borderColor: "grey", borderRadius: 8, padding: 10 }
 });
 

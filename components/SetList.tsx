@@ -4,7 +4,10 @@ import { View, FlatList, StyleSheet, Text } from 'react-native';
 import SetListItem from "./SetListItem";
 
 
-const SetList = ({ sets, setVideo }) => {
+const SetList = ({ sets, setVideo }: {
+  sets: Object;
+  setVideo: String;
+}) => {
 
   return (
     <View>
@@ -18,7 +21,7 @@ const SetList = ({ sets, setVideo }) => {
             id={item.id}
           />
         )
-        }/>
+        } />
     </View>
   )
 }

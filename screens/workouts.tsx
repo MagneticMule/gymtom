@@ -59,8 +59,8 @@ const WorkoutListScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#1f1d2b" },
-  largeText: { color: "white", fontSize: 58, fontWeight: "bold", textTransform: "uppercase" },
+  container: { flex: 1 },
+  largeText: { color: "black", fontSize: 58, fontWeight: "bold", textTransform: "uppercase" },
   smallText: { color: "lightgrey", fontSize: 20, fontWeight: "bold", textTransform: "uppercase" }
 });
 

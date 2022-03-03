@@ -2,7 +2,13 @@ import React from "react";
 import { FlatList, Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import ExcerciseInputs from './ExcerciseInputs';
 
-const SetListItem = ({ reps, setType, excercises, setVideo, id }) => {
+const SetListItem = ({ reps, setType, excercises, setVideo, id }: {
+  reps: number;
+  setType: string;
+  excercises: Array<object>;
+  setVideo: string;
+  id: number;
+}) => {
   return (
     <View>
       <View style={styles.infoContainer}>
@@ -13,7 +19,7 @@ const SetListItem = ({ reps, setType, excercises, setVideo, id }) => {
         <View>
           <FlatList scrollEnabled={false} data={excercises} renderItem={({ item }) => (
             <View>
-              <ExcerciseListItem setVideo={setVideo} excercise={item?.excercise} />
+              <ExcerciseListItem key={item._id} setVideo={setVideo} excercise={item?.excercise} />
               <Text>Repetitions: {item?.reps?.minReps} to {item?.reps?.maxReps}</Text>
             </View>
           )} />
@@ -23,14 +29,17 @@ const SetListItem = ({ reps, setType, excercises, setVideo, id }) => {
   );
 }
 
-const ExcerciseListItem = ({ excercise, setVideo }) => {
+const ExcerciseListItem = ({ excercise, setVideo }: {
+  excercise: Array<object>;
+  setVideo: Function;
+}) => {
   return (
     <TouchableOpacity
       style={[styles.container, styles.shadowProp]}
       onPress={() => { setVideo(excercise?.CloudVideo?.secure_url) }}
     >
       <View>
-        <Text style={styles.title}>{excercise?.excerciseName}</Text>
+        <Text style={styles.title}>{excercise?.excerciseName.trim()}</Text>
         <Text style={styles.excerciseIntroduction}>{excercise?.introduction}</Text>
         {
           excercise?.steps.map((step, index) => (
@@ -48,18 +57,18 @@ const ExcerciseListItem = ({ excercise, setVideo }) => {
 
 const styles = StyleSheet.create({
   shadowProp: {
-    shadowColor: "#000",
+    shadowColor: "#565656",
     shadowOffset: {
       width: 0,
       height: 1,
     },
     shadowOpacity: 0.20,
     shadowRadius: 1.41,
-    elevation: 2,
+    elevation: 8,
   },
-  container: { backgroundColor: "#252837", padding: 8, margin: 8, borderRadius: 8, overflow: "hidden" },
+  container: { backgroundColor: "white", padding: 8, margin: 8, borderRadius: 8, overflow: "hidden" },
   infoContainer: { margin: 8 },
-  title: { color: "#e0dfe3", fontSize: 24, fontWeight: "bold", textAlign: "left", marginBottom: 10, marginTop: 0 },
+  title: { color: "#565656", fontSize: 24, fontWeight: "bold", textAlign: "left", marginBottom: 10, marginTop: 0 },
   info: { flex: 1, flexDirection: "row", justifyContent: "space-between" },
   setType: { padding: 8, borderRadius: 8, backgroundColor: "#653322", color: "#e0dfe3" },
   setReps: { padding: 8, borderRadius: 8, backgroundColor: "#224433", color: "#e0dfe3" },

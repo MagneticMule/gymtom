@@ -21,7 +21,7 @@ const SetListScreen = ({ navigation, route }) => {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 0, margin: 0, backgroundColor: "#1f1d2b" },
+  container: { flex: 1, padding: 0, margin: 0, backgroundColor: "white" },
   largeText: { color: "white", fontSize: 58, fontWeight: "bold", textTransform: "uppercase" },
   smallText: { color: "lightgrey", fontSize: 20, fontWeight: "bold", textTransform: "uppercase" }
 });

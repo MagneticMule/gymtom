@@ -112,8 +112,8 @@ const WorkoutScreen = ({ navigation, route }) => {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#1f1d2b" },
-  infoContainer: { flex: 1, flexDirection: "column", padding: 28, backgroundColor: '#332242', borderTopLeftRadius: 32, borderTopRightRadius: 32, elevation: 8 },
+  container: { flex: 1, backgroundColor: "white" },
+  infoContainer: { flex: 1, flexDirection: "column", padding: 28, backgroundColor: 'white', borderTopLeftRadius: 32, borderTopRightRadius: 32, elevation: 8 },
   titleText: { color: "white", fontSize: 30, marginBottom: 16, marginLeft: 28, fontFamily: 'Montserrat_500Medium' },
   levelText: { color: "#fff", fontSize: 16, marginBottom: 64, marginLeft: 28, fontFamily: 'Montserrat_200ExtraLight' },
   linearGradient: { width: '100%', height: '100%', justifyContent: 'flex-end' },
@@ -124,8 +124,7 @@ const styles = StyleSheet.create({
   statBox: { flex: 1, flexDirection: "column", alignItems: "center", },
   statsContainer: { flex: 1, flexDirection: "row", alignContent: "space-between", justifyContent: "space-between", },
   statsTitle: { color: "#ffaa45", fontFamily: 'Montserrat_300Light', textTransform: "uppercase" },
-  stat: { color: "#ffaa45", fontSize: 48, fontFamily: 'Montserrat_600SemiBold' },
-  vSeperator: { backgroundColor: "#aaa", width: 1, height: "100%" }
+  stat: { color: "#ffaa45", fontSize: 32, fontFamily: 'Montserrat_600SemiBold' },
 });
 
 export default WorkoutScreen;

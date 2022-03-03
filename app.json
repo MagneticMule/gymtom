@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#252837"
+      "backgroundColor": "#cacaca"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -18,11 +18,11 @@
       "**/*"
     ],
     "ios": {
-      "userInterfaceStyle": "automatic",
+      "userInterfaceStyle": "light",
       "supportsTablet": false
     },
     "android": {
-      "userInterfaceStyle": "automatic",
+      "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#252837"
