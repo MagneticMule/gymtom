@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import ExcerciseInputs from './ExcerciseInputs';
 
 const SetListItem = ({ reps, setType, excercises, setVideo, id }) => {
   return (
@@ -31,7 +32,6 @@ const ExcerciseListItem = ({ excercise, setVideo }) => {
       <View>
         <Text style={styles.title}>{excercise?.excerciseName}</Text>
         <Text style={styles.excerciseIntroduction}>{excercise?.introduction}</Text>
-        {/* <Text>{excercise?.CloudVideo?.secure_url}</Text> */}
         {
           excercise?.steps.map((step, index) => (
             <View style={index >= excercise.steps.length ? styles.excerciseStepContainerIsLast : styles.excerciseStepContainer}>
@@ -40,6 +40,7 @@ const ExcerciseListItem = ({ excercise, setVideo }) => {
             </View>
           ))
         }
+        <ExcerciseInputs />
       </View>
     </TouchableOpacity >
   );
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   excerciseStepTitle: { fontSize: 22 },
   excerciseStepContainer: { padding: 8, borderBottomColor: "#222", borderBottomWidth: 1 },
   excerciseStepContainerIsLast: { padding: 8 },
-  excerciseStep:{lineHeight:24}
+  excerciseStep: { lineHeight: 24 }
 });
 
 export default SetListItem;

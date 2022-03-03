@@ -9,6 +9,9 @@ import WorkoutListScreen from './screens/workouts';
 import WorkoutScreen from './screens/workout';
 import SetListScreen from './screens/sets';
 
+import { Appearance } from 'react-native';
+
+
 import {
   useFonts,
   Montserrat_100Thin,
@@ -34,6 +37,7 @@ import {
 LogBox.ignoreAllLogs();
 const Stack = createNativeStackNavigator();
 const App = () => {
+  console.log(Appearance.getColorScheme());
   LogBox.ignoreLogs(['Setting a timer']);
   let [fontsLoaded] = useFonts({
     Montserrat_100Thin,
@@ -56,25 +60,17 @@ const App = () => {
     Montserrat_900Black_Italic,
   });
   if (!fontsLoaded) {
-
     return <AppLoading />;
   } else {
     return (
-      <View style={{ flex: 1, backgroundColor: '#252837' }}>
+      <View style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
               name="Login"
               component={LoginScreen}
               options={{
-                title: 'Hello There',
-                headerStyle: {
-                  backgroundColor: '#252837',
-                },
-                headerTitleStyle: {
-                  color: '#ffffff',
-                  fontWeight: 'bold'
-                },
+                title: "Let's get you started"
               }} />
 
             <Stack.Screen
