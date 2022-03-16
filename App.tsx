@@ -3,12 +3,10 @@ import { LogBox, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppLoading from 'expo-app-loading';
-x
 import LoginScreen from './screens/login';
 import WorkoutListScreen from './screens/workouts';
 import WorkoutScreen from './screens/workout';
 import SetListScreen from './screens/sets';
-
 import { Appearance } from 'react-native';
 
 

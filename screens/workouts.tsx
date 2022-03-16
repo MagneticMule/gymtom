@@ -29,16 +29,15 @@ const query = `*[_type == "workout"] {
   }
 }`;
 
-const WorkoutListScreen = ({ navigation }) => {
-
+const WorkoutListScreen = ({ navigation }:
+  {
+    navigation: any;
+  }) => {
   const [workouts, setWorkouts] = useState({ data: {} });
-
   useEffect(() => {
     sanity.fetch(query).then((workouts) => setWorkouts(workouts))
       .catch(console.error);
   }, []);
-
-
   return (
     <View style={styles.container} safeAreaTop>
       <FlatList

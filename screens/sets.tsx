@@ -5,7 +5,7 @@ import SetList from '../components/SetList';
 import VideoPlayer from '../components/VideoPlayer';
 
 const SetListScreen = ({ navigation, route }) => {
-  const { workout } = route.params;
+  const { workout, title } = route.params;
   const sets = workout.sets;
 
   const [videoUri, setVideoUri] = useState('https://res.cloudinary.com/fitness-republic/video/upload/v1632980748/excercises/ben/Kettlebell_Swing_hrwlcb.mp4');

@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Video, AVPlaybackStatus } from 'expo-av';
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import {Video} from 'expo-av';
 
-const VideoPlayer = ({ uri }) => {
+const VideoPlayer = ({uri}: {uri: string}) => {
   return (
     <Video
       style={styles.player}
@@ -10,13 +10,13 @@ const VideoPlayer = ({ uri }) => {
       resizeMode="contain"
       isLooping
       isMuted
-      source={{ uri }}
+      source={{uri}}
     />
   );
-}
+};
 
 const styles = StyleSheet.create({
-  player: { width: "100%", height: "31%", margin: 0, padding: 0, elevation: 8 }
+  player: {width: '100%', height: '30%', margin: 0, padding: 0, elevation: 8},
 });
 
 export default VideoPlayer;
