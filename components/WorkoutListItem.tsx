@@ -9,10 +9,22 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const WorkoutListItem = ({title, description, image, level, id}) => {
+const WorkoutListItem = ({
+  title,
+  description,
+  image,
+  level,
+  id,
+}: {
+  title: string;
+  description: string;
+  image: string;
+  level: number;
+  id: number;
+}) => {
   const navigation = useNavigation();
-
-  const levelDisplay = level => {
+  const levelDisplay = (level: number) => {
+    if (level > 5) return '';
     let levels = [];
     levels[1] = 'Entry Level';
     levels[2] = 'Beginner';
