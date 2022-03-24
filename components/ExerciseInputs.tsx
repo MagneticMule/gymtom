@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 
-const ExcerciseInputs = ({}) => {
+const ExerciseInputs = ({}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>+Weight</Text>
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExcerciseInputs;
+export default ExerciseInputs;

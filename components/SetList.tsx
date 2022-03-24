@@ -15,16 +15,11 @@ const SetList = ({sets, setVideo}: {sets: Object; setVideo: string}) => {
           setVideo={setVideo}
           reps={item.set.reps}
           setType={item.set.type}
-          excercises={item.set.excercises}
+          exercises={item.set.exercises}
           id={item.id}
         />
       )}
-      renderHiddenItem={(data, rowMap) => (
-        <View>
-          <Text>Left</Text>
-          <Text>Right</Text>
-        </View>
-      )}
+      renderHiddenItem={(data, rowMap) => <View></View>}
     />
   );
 };

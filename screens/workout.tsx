@@ -24,13 +24,13 @@ const query = `*[_id == $id][0] {
         "type": setType,
         "reps": setRepetitions,
         "id": _key,
-        "excercises":setExcercise[]{
+        "exercises":setExcercise[]{
           "id":_key,
           "reps":repFields{
             minReps,
             maxReps
           },
-          "excercise":excerciseReference->
+          "exercise":excerciseReference->
         }
     }
   }
@@ -39,9 +39,11 @@ const query = `*[_id == $id][0] {
 const WorkoutScreen = ({
   navigation,
   route,
+  level,
 }: {
   route: string;
   navigtation: any;
+  level: number;
 }) => {
   const {id} = route.params;
   const [workout, setWorkout] = useState({data: {}});
@@ -89,13 +91,15 @@ const WorkoutScreen = ({
             </View>
 
             <View style={styles.statBox}>
-              <Text style={styles.statsTitle}>Excercises</Text>
-              <Text style={styles.stat}>12</Text>
+              <Text style={styles.statsTitle}>Sets</Text>
+              <Text style={styles.stat}>
+                {workout.sets ? workout.sets.length : 0}
+              </Text>
             </View>
 
             <View style={styles.statBox}>
               <Text style={styles.statsTitle}>Challenge</Text>
-              <Text style={styles.stat}>3/5</Text>
+              <Text style={styles.stat}>{level ? level : 0}</Text>
             </View>
           </View>
           <View style={styles.buttonContainer}>
@@ -128,14 +132,17 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   titleText: {
-    color: 'white',
+    color: '#efefef',
     fontSize: 30,
     marginBottom: 16,
     marginLeft: 28,
     fontFamily: 'Montserrat_500Medium',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 1,
   },
   levelText: {
-    color: '#fff',
+    color: '#cacaca',
     fontSize: 16,
     marginBottom: 64,
     marginLeft: 28,
@@ -143,14 +150,14 @@ const styles = StyleSheet.create({
   },
   linearGradient: {width: '100%', height: '100%', justifyContent: 'flex-end'},
   descriptionTitle: {
-    color: '#ffffff',
+    color: '#888',
     fontSize: 24,
     marginBottom: 12,
     fontFamily: 'Montserrat_500Medium',
   },
   descriptionText: {
     marginBottom: 28,
-    color: 'lightgrey',
+    color: '#343434',
     fontSize: 18,
     lineHeight: 28,
     fontFamily: 'Montserrat_300Light',

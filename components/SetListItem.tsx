@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import ExcerciseInputs from './ExcerciseInputs';
+import ExerciseInputs from './ExerciseInputs';
 
 const SetListItem = ({
   reps,
   setType,
-  excercises,
+  exercises,
   setVideo,
   id,
 }: {
   reps: number;
   setType: string;
-  excercises: Array<any>;
+  exercises: Array<any>;
   setVideo: string;
   id: number;
 }) => {
@@ -27,13 +27,13 @@ const SetListItem = ({
         <View>
           <FlatList
             scrollEnabled={false}
-            data={excercises}
+            data={exercises}
             renderItem={({item}) => (
               <View>
-                <ExcerciseListItem
+                <ExerciseListItem
                   key={item._id}
                   setVideo={setVideo}
-                  excercise={item?.excercise}
+                  exercise={item?.exercise}
                 />
                 <Text>
                   Repetitions: {item?.reps?.minReps} to {item?.reps?.maxReps}
@@ -47,11 +47,11 @@ const SetListItem = ({
   );
 };
 
-const ExcerciseListItem = ({
-  excercise,
+const ExerciseListItem = ({
+  exercise,
   setVideo,
 }: {
-  excercise: Array<any>;
+  exercise: Array<any>;
   setVideo: Function;
 }) => {
   const [isActive, setIsActive] = useState(true);
@@ -59,26 +59,26 @@ const ExcerciseListItem = ({
     <TouchableOpacity
       style={[styles.container, styles.shadowProp]}
       onPress={() => {
-        setVideo(excercise?.CloudVideo?.secure_url);
+        setVideo(exercise?.CloudVideo?.secure_url);
       }}>
       <View>
-        <Text style={styles.title}>{excercise?.excerciseName.trim()}</Text>
-        <Text style={styles.excerciseIntroduction}>
-          {excercise?.introduction}
+        <Text style={styles.title}>{exercise?.excerciseName.trim()}</Text>
+        <Text style={styles.exerciseIntroduction}>
+          {exercise?.introduction}
         </Text>
-        {excercise?.steps.map((step, index) => (
+        {exercise?.steps.map((step, index) => (
           <View
             key={index}
             style={
-              index >= excercise.steps.length
-                ? styles.excerciseStepContainerIsLast
-                : styles.excerciseStepContainer
+              index >= exercise.steps.length
+                ? styles.exerciseStepContainerIsLast
+                : styles.exerciseStepContainer
             }>
-            <Text style={styles.excerciseStepTitle}>Step {index + 1}</Text>
-            <Text style={styles.excerciseStep}>{step}</Text>
+            <Text style={styles.exerciseStepTitle}>Step {index + 1}</Text>
+            <Text style={styles.exerciseStep}>{step}</Text>
           </View>
         ))}
-        <ExcerciseInputs />
+        <ExerciseInputs />
       </View>
     </TouchableOpacity>
   );
@@ -86,21 +86,17 @@ const ExcerciseListItem = ({
 
 const styles = StyleSheet.create({
   shadowProp: {
-    shadowColor: '#565656',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    shadowRadius: 3,
     elevation: 8,
   },
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     padding: 8,
     margin: 8,
     borderRadius: 8,
-    overflow: 'hidden',
   },
   infoContainer: {margin: 8},
   title: {
@@ -124,15 +120,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#224433',
     color: '#e0dfe3',
   },
-  excerciseIntroduction: {marginBottom: 32},
-  excerciseStepTitle: {fontSize: 22},
-  excerciseStepContainer: {
+  exerciseIntroduction: {marginBottom: 32},
+  exerciseStepTitle: {fontSize: 22},
+  exerciseStepContainer: {
     padding: 8,
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
   },
-  excerciseStepContainerIsLast: {padding: 8},
-  excerciseStep: {lineHeight: 24},
+  exerciseStepContainerIsLast: {padding: 8},
+  exerciseStep: {lineHeight: 24},
 });
 
 export default SetListItem;

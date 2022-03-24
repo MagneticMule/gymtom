@@ -59,13 +59,13 @@ const WorkoutListItem = ({
 
 const styles = StyleSheet.create({
   shadowProp: {
-    shadowColor: '#999',
+    shadowColor: 'hsla(0,0%,0%,1.0)',
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 1.41,
+    shadowOpacity: .75,
+    shadowRadius: 2,
     elevation: 8,
   },
   container: {
@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 12,
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#fff',
     overflow: 'hidden',
   },
   image: {width: '100%', height: 200, marginBottom: 10},

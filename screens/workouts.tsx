@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, FlatList, StyleSheet, Text} from 'react-native';
 
 import sanity from '../lib/sanity';
-import WorkoutListItem from "../components/WorkoutListItem";
+import WorkoutListItem from '../components/WorkoutListItem';
 
 const query = `*[_type == "workout"] {
   "id": _id,
@@ -17,32 +17,31 @@ const query = `*[_type == "workout"] {
       set {
         "reps": setRepetitions,
         "id": sets._ref,
-        "excercises":setExcercise[]{
+        "exercises":setExcercise[]{
           "id":_key,
           "reps":repFields{
             minReps,
             maxReps
           },
-          "excercise":excerciseReference->
+          "exercise":excerciseReference->
         }
     }
   }
 }`;
 
-const WorkoutListScreen = ({ navigation }:
-  {
-    navigation: any;
-  }) => {
-  const [workouts, setWorkouts] = useState({ data: {} });
+const WorkoutListScreen = ({navigation}: {navigation: any}) => {
+  const [workouts, setWorkouts] = useState({data: {}});
   useEffect(() => {
-    sanity.fetch(query).then((workouts) => setWorkouts(workouts))
+    sanity
+      .fetch(query)
+      .then(workouts => setWorkouts(workouts))
       .catch(console.error);
   }, []);
   return (
     <View style={styles.container} safeAreaTop>
       <FlatList
         data={workouts}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <WorkoutListItem
             title={item.name}
             description={item.description}
@@ -55,12 +54,22 @@ const WorkoutListScreen = ({ navigation }:
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  largeText: { color: "black", fontSize: 58, fontWeight: "bold", textTransform: "uppercase" },
-  smallText: { color: "lightgrey", fontSize: 20, fontWeight: "bold", textTransform: "uppercase" }
+  container: {flex: 1},
+  largeText: {
+    color: 'black',
+    fontSize: 58,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
+  smallText: {
+    color: 'lightgrey',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
 });
 
 export default WorkoutListScreen;
