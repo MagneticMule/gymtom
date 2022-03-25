@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+  PanGestureHandlerProps,
+} from 'react-native-gesture-handler';
 import ExerciseInputs from './ExerciseInputs';
 
 const SetListItem = ({
@@ -28,6 +33,7 @@ const SetListItem = ({
           <FlatList
             scrollEnabled={false}
             data={exercises}
+            keyExtractor={item => item.id}
             renderItem={({item}) => (
               <View>
                 <ExerciseListItem
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#f3f3f1',
     padding: 8,
     margin: 8,
     borderRadius: 8,

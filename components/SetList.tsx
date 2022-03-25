@@ -1,16 +1,11 @@
-import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
-import {SwipeListView} from 'react-native-swipe-list-view';
-
 import SetListItem from './SetListItem';
 
 const SetList = ({sets, setVideo}: {sets: Object; setVideo: string}) => {
   return (
-    <SwipeListView
+    <FlatList
       data={sets}
-      useFlatList={true}
-      rightOpenValue={-55}
-      renderItem={({item}, rowMap) => (
+      renderItem={({item}) => (
         <SetListItem
           setVideo={setVideo}
           reps={item.set.reps}
@@ -19,9 +14,18 @@ const SetList = ({sets, setVideo}: {sets: Object; setVideo: string}) => {
           id={item.id}
         />
       )}
-      renderHiddenItem={(data, rowMap) => <View></View>}
     />
   );
 };
+
+const Styles = StyleSheet.create({
+  done: {fontSize: 64, color: 'black'},
+  container: {
+    margin: 0,
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: 70,
+  },
+});
 
 export default SetList;
