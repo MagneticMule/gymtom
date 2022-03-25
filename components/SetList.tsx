@@ -1,4 +1,5 @@
 import {View, FlatList, StyleSheet, Text} from 'react-native';
+import {Swipeable} from 'react-native-gesture-handler';
 import SetListItem from './SetListItem';
 
 const SetList = ({sets, setVideo}: {sets: Object; setVideo: string}) => {

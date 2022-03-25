@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {
-  PanGestureHandler,
-  PanGestureHandlerGestureEvent,
-  PanGestureHandlerProps,
-} from 'react-native-gesture-handler';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+
 import ExerciseInputs from './ExerciseInputs';
 
 const SetListItem = ({
@@ -13,6 +10,8 @@ const SetListItem = ({
   exercises,
   setVideo,
   id,
+  onSwipeFromLeft,
+  onRightPress,
 }: {
   reps: number;
   setType: string;
@@ -21,35 +20,37 @@ const SetListItem = ({
   id: number;
 }) => {
   return (
-    <View>
-      <View style={styles.infoContainer}>
-        <View style={styles.info}>
-          <Text style={styles.setReps}>
-            Repeat this set {reps} {reps === 1 ? 'time' : 'times'}
-          </Text>
-          <Text style={styles.setType}>{setType} set</Text>
-        </View>
-        <View>
-          <FlatList
-            scrollEnabled={false}
-            data={exercises}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => (
-              <View>
-                <ExerciseListItem
-                  key={item._id}
-                  setVideo={setVideo}
-                  exercise={item?.exercise}
-                />
-                <Text>
-                  Repetitions: {item?.reps?.minReps} to {item?.reps?.maxReps}
-                </Text>
-              </View>
-            )}
-          />
+    <Swipeable>
+      <View>
+        <View style={styles.infoContainer}>
+          <View style={styles.info}>
+            <Text style={styles.setReps}>
+              Repeat this set {reps} {reps === 1 ? 'time' : 'times'}
+            </Text>
+            <Text style={styles.setType}>{setType} set</Text>
+          </View>
+          <View>
+            <FlatList
+              scrollEnabled={false}
+              data={exercises}
+              keyExtractor={item => item.id}
+              renderItem={({item}) => (
+                <View>
+                  <ExerciseListItem
+                    key={item._id}
+                    setVideo={setVideo}
+                    exercise={item?.exercise}
+                  />
+                  <Text>
+                    Repetitions: {item?.reps?.minReps} to {item?.reps?.maxReps}
+                  </Text>
+                </View>
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </Swipeable>
   );
 };
 
