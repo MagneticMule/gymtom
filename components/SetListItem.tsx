@@ -1,13 +1,27 @@
 import React, {useState} from 'react';
-import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  FlatList,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import ExerciseInputs from './ExerciseInputs';
-const LeftActions = () => {
+const RightActions = (progress, dragX) => {
+  const scale = dragX.interpolate({
+    inputRange: [-100, 0],
+    outputRange: [1, 0],
+    // extrapolate: 'clamp',
+  });
   return (
-    <View>
-      <Text>Left</Text>
+    <View style={styles.rightAction}>
+      <Animated.Text style={(styles.actionText, {transform: [{scale}]})}>
+        Done
+      </Animated.Text>
     </View>
   );
 };
@@ -29,7 +43,7 @@ const SetListItem = ({
   return (
     /*Encapsulating Swipeable in a <GestureHandlerRootView> is needed for Android. IOS works fine without it*/
     <GestureHandlerRootView>
-      <Swipeable renderLeftActions={LeftActions}>
+      <Swipeable renderRightActions={RightActions}>
         <View>
           <View style={styles.infoContainer}>
             <View style={styles.info}>
@@ -115,6 +129,18 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 8,
     borderRadius: 8,
+  },
+  rightAction: {
+    backgroundColor: '#3f2212',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  actionText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 86,
+    padding: 20,
   },
   infoContainer: {margin: 8},
   title: {
