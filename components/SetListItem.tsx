@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import ExerciseInputs from './ExerciseInputs';
-
+const LeftActions = () => {
+  return (
+    <View>
+      <Text>Left</Text>
+    </View>
+  );
+};
 const SetListItem = ({
   reps,
   setType,
@@ -20,37 +27,41 @@ const SetListItem = ({
   id: number;
 }) => {
   return (
-    <Swipeable>
-      <View>
-        <View style={styles.infoContainer}>
-          <View style={styles.info}>
-            <Text style={styles.setReps}>
-              Repeat this set {reps} {reps === 1 ? 'time' : 'times'}
-            </Text>
-            <Text style={styles.setType}>{setType} set</Text>
-          </View>
-          <View>
-            <FlatList
-              scrollEnabled={false}
-              data={exercises}
-              keyExtractor={item => item.id}
-              renderItem={({item}) => (
-                <View>
-                  <ExerciseListItem
-                    key={item._id}
-                    setVideo={setVideo}
-                    exercise={item?.exercise}
-                  />
-                  <Text>
-                    Repetitions: {item?.reps?.minReps} to {item?.reps?.maxReps}
-                  </Text>
-                </View>
-              )}
-            />
+    /*Encapsulating Swipeable in a <GestureHandlerRootView> is needed for Android. IOS works fine without it*/
+    <GestureHandlerRootView>
+      <Swipeable renderLeftActions={LeftActions}>
+        <View>
+          <View style={styles.infoContainer}>
+            <View style={styles.info}>
+              <Text style={styles.setReps}>
+                Repeat this set {reps} {reps === 1 ? 'time' : 'times'}
+              </Text>
+              <Text style={styles.setType}>{setType} set</Text>
+            </View>
+            <View>
+              <FlatList
+                scrollEnabled={false}
+                data={exercises}
+                keyExtractor={item => item.id}
+                renderItem={({item}) => (
+                  <View>
+                    <ExerciseListItem
+                      key={item._id}
+                      setVideo={setVideo}
+                      exercise={item?.exercise}
+                    />
+                    <Text>
+                      Repetitions: {item?.reps?.minReps} to{' '}
+                      {item?.reps?.maxReps}
+                    </Text>
+                  </View>
+                )}
+              />
+            </View>
           </View>
         </View>
-      </View>
-    </Swipeable>
+      </Swipeable>
+    </GestureHandlerRootView>
   );
 };
 
