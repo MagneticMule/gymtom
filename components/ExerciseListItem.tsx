@@ -10,85 +10,6 @@ import {
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-import ExerciseInputs from './ExerciseInputs';
-
-const SwipeLeftActions = (progress, dragX) => {
-  const scale = dragX.interpolate({
-    inputRange: [0, 100],
-    outputRange: [0, 2],
-    // extrapolate: 'clamp',
-  });
-  return (
-    <View style={styles.leftAction}>
-      <Animated.Text style={(styles.actionText, {transform: [{scale}]})}>
-        Done
-      </Animated.Text>
-    </View>
-  );
-};
-const SetListItem = ({
-  reps,
-  setType,
-  exercises,
-  setVideo,
-  completed,
-  id,
-}: {
-  reps: number;
-  setType: string;
-  exercises: Array<any>;
-  setVideo: string;
-  completed: boolean;
-  id: number;
-}) => {
-  const [isActive, setIsActive] = useState(true);
-  console.log({isActive});
-  return (
-    /*Encapsulating Swipeable in a <GestureHandlerRootView> is needed for Android. IOS works fine without it*/
-    <GestureHandlerRootView>
-      <Swipeable
-        renderLeftActions={SwipeLeftActions}
-        friction={1}
-        overshootFriction={8}
-        leftThreshold={30}
-        onSwipeableOpen={() => {
-          setIsActive(false);
-        }}>
-        <View>
-          <View style={styles.infoContainer}>
-            <View style={styles.info}>
-              <Text style={styles.setReps}>
-                Repeat this set {reps} {reps === 1 ? 'time' : 'times'}
-              </Text>
-              <Text style={styles.setType}>{setType} set</Text>
-            </View>
-            <View>
-              <FlatList
-                scrollEnabled={false}
-                data={exercises}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => (
-                  <View>
-                    <ExerciseListItem
-                      key={item._id}
-                      setVideo={setVideo}
-                      exercise={item?.exercise}
-                    />
-                    <Text>
-                      Repetitions: {item?.reps?.minReps} to{' '}
-                      {item?.reps?.maxReps}
-                    </Text>
-                  </View>
-                )}
-              />
-            </View>
-          </View>
-        </View>
-      </Swipeable>
-    </GestureHandlerRootView>
-  );
-};
-
 const ExerciseListItem = ({
   exercise,
   setVideo,
@@ -188,4 +109,4 @@ const styles = StyleSheet.create({
   exerciseStep: {lineHeight: 24},
 });
 
-export default SetListItem;
+export default ExerciseListItem;

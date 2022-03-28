@@ -4,7 +4,7 @@ import {View, FlatList, StyleSheet, Text} from 'react-native';
 import sanity from '../lib/sanity';
 import WorkoutListItem from '../components/WorkoutListItem';
 
-const query = `*[_type == "workout"] {
+const query = `*[_type == "workout"] | order(_updatedAt desc) {
   "id": _id,
   name,
   description,

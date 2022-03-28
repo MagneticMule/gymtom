@@ -31,8 +31,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "",
-    "sdkVersion": "44.0.0"
+    "description": ""
   },
   "name": "gymtom"
 }
