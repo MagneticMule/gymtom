@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity: .75,
+    shadowOpacity: 0.75,
     shadowRadius: 2,
     elevation: 8,
   },
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 8,
     fontSize: 12,
+    overflow: 'hidden',
   },
 });
 

@@ -11,14 +11,15 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import ExerciseInputs from './ExerciseInputs';
-const RightActions = (progress, dragX) => {
+
+const SwipeLeftActions = (progress, dragX) => {
   const scale = dragX.interpolate({
-    inputRange: [-100, 0],
-    outputRange: [1, 0],
+    inputRange: [0, 100],
+    outputRange: [0, 2],
     // extrapolate: 'clamp',
   });
   return (
-    <View style={styles.rightAction}>
+    <View style={styles.leftAction}>
       <Animated.Text style={(styles.actionText, {transform: [{scale}]})}>
         Done
       </Animated.Text>
@@ -31,8 +32,6 @@ const SetListItem = ({
   exercises,
   setVideo,
   id,
-  onSwipeFromLeft,
-  onRightPress,
 }: {
   reps: number;
   setType: string;
@@ -40,10 +39,20 @@ const SetListItem = ({
   setVideo: string;
   id: number;
 }) => {
+  const [isActive, setIsActive] = useState(true);
+  console.log({isActive});
   return (
     /*Encapsulating Swipeable in a <GestureHandlerRootView> is needed for Android. IOS works fine without it*/
     <GestureHandlerRootView>
-      <Swipeable renderRightActions={RightActions}>
+      <Swipeable
+        renderLeftActions={SwipeLeftActions}
+        friction={1}
+        overshootFriction={8}
+        leftThreshold={30}
+        onSwipeableOpen={() => {
+          setIsActive(false);
+          alert('DONE!');
+        }}>
         <View>
           <View style={styles.infoContainer}>
             <View style={styles.info}>
@@ -86,7 +95,6 @@ const ExerciseListItem = ({
   exercise: Array<any>;
   setVideo: Function;
 }) => {
-  const [isActive, setIsActive] = useState(true);
   return (
     <TouchableOpacity
       style={[styles.container, styles.shadowProp]}
@@ -129,18 +137,20 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 8,
     borderRadius: 8,
+    overflow: 'hidden',
   },
-  rightAction: {
-    backgroundColor: '#3f2212',
+  leftAction: {
+    backgroundColor: 'blue',
+    color: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
   },
   actionText: {
-    color: '#fff',
+    color: 'white',
     fontWeight: 'bold',
-    fontSize: 86,
-    padding: 20,
+    fontSize: 128,
+    padding: 40,
   },
   infoContainer: {margin: 8},
   title: {
@@ -157,12 +167,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: '#653322',
     color: '#e0dfe3',
+    overflow: 'hidden',
   },
   setReps: {
     padding: 8,
     borderRadius: 8,
     backgroundColor: '#224433',
     color: '#e0dfe3',
+    overflow: 'hidden',
   },
   exerciseIntroduction: {marginBottom: 32},
   exerciseStepTitle: {fontSize: 22},
