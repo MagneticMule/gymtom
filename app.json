@@ -2,6 +2,7 @@
   "expo": {
     "name": "gymtom",
     "slug": "gymtom",
+    "owner": "seventh_stage_creative",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
