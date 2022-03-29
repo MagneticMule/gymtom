@@ -29,7 +29,7 @@ const query = `*[_type == "workout"] | order(_updatedAt desc) {
 }`;
 const buildDuplicates = (arr: any, repeat: number) => {
   const a = arr.map((i: any) => {
-    i.sets.map((s: any) => s);
+    i.sets.map((s: any) => s.set);
   });
   console.log('-----START-----');
   console.log(a);
