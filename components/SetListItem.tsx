@@ -43,6 +43,7 @@ const SetListItem = ({
 }) => {
   const [isActive, setIsActive] = useState(true);
   console.log({isActive});
+  console.log({exercises});
   return (
     /*Encapsulating Swipeable in a <GestureHandlerRootView> is needed for Android. IOS works fine without it*/
     <GestureHandlerRootView>
