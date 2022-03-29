@@ -3,6 +3,7 @@ import {Swipeable} from 'react-native-gesture-handler';
 import SetListItem from './SetListItem';
 
 const SetList = ({sets, setVideo}: {sets: Object; setVideo: string}) => {
+  const expandSetReps = (sets, reps) => {};
   return (
     <FlatList
       data={sets}

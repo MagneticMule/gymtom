@@ -12,13 +12,12 @@ const query = `*[_type == "workout"] | order(_updatedAt desc) {
   "level": excerciseLevel,
   "sets": setBuilder[]{
     "id": _key,
-    "reps": setRepetitions,
     "type": setType,
       set {
         "reps": setRepetitions,
         "id": sets._ref,
         "exercises":setExcercise[]{
-          "id":_key,
+          "id": _id,
           "reps":repFields{
             minReps,
             maxReps
@@ -28,13 +27,21 @@ const query = `*[_type == "workout"] | order(_updatedAt desc) {
     }
   }
 }`;
-
+const buildDuplicates = (arr: any, repeat: number) => {
+  const a = arr.map((i: any) => {
+    i.sets.map((s: any) => s);
+  });
+  console.log('-----START-----');
+  console.log(a);
+  console.log('-----END-----');
+  return arr;
+};
 const WorkoutListScreen = ({navigation}: {navigation: any}) => {
   const [workouts, setWorkouts] = useState({data: {}});
   useEffect(() => {
     sanity
       .fetch(query)
-      .then(workouts => setWorkouts(workouts))
+      .then(workouts => setWorkouts(buildDuplicates(workouts, 3)))
       .catch(console.error);
   }, []);
   return (

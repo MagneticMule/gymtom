@@ -42,7 +42,7 @@ const WorkoutScreen = ({
   level,
 }: {
   route: string;
-  navigtation: any;
+  navigation: any;
   level: number;
 }) => {
   const {id} = route.params;
