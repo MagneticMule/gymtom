@@ -27,21 +27,13 @@ const query = `*[_type == "workout"] | order(_updatedAt desc) {
     }
   }
 }`;
-const buildDuplicates = (arr: any, repeat: number) => {
-  const a = arr.map((i: any) => {
-    i.sets.map((s: any) => s.set);
-  });
-  console.log('-----START-----');
-  console.log(a);
-  console.log('-----END-----');
-  return arr;
-};
+
 const WorkoutListScreen = ({navigation}: {navigation: any}) => {
   const [workouts, setWorkouts] = useState({data: {}});
   useEffect(() => {
     sanity
       .fetch(query)
-      .then(workouts => setWorkouts(buildDuplicates(workouts, 3)))
+      .then(workouts => setWorkouts(workouts))
       .catch(console.error);
   }, []);
   return (
@@ -64,7 +56,7 @@ const WorkoutListScreen = ({navigation}: {navigation: any}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {flex: 1, maxWidth: 500},
   largeText: {
     color: 'black',
     fontSize: 58,

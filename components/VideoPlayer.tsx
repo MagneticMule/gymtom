@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT / 4,
+    height: SCREEN_HEIGHT / 3.333,
     margin: 0,
     padding: 0,
+    // paddingBottom: '56.25%',
     elevation: 8,
   },
 });
