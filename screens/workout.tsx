@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import sanity from '../lib/sanity';
 
 const query = `*[_id == $id][0] {

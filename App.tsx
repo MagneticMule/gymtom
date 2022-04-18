@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { LogBox, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {LogBox, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AppLoading from 'expo-app-loading';
 import LoginScreen from './screens/login';
 import WorkoutListScreen from './screens/workouts';
 import WorkoutScreen from './screens/workout';
 import SetListScreen from './screens/sets';
-import { Appearance } from 'react-native';
-
+import StatsScreen from './screens/stats';
+import {Appearance} from 'react-native';
 
 import {
   useFonts,
@@ -61,15 +61,16 @@ const App = () => {
     return <AppLoading />;
   } else {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1}}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
               name="Login"
               component={LoginScreen}
               options={{
-                title: "Let's get you started"
-              }} />
+                title: "Let's get you started",
+              }}
+            />
 
             <Stack.Screen
               name="Workouts"
@@ -91,6 +92,13 @@ const App = () => {
               component={SetListScreen}
               options={{
                 title: 'SetList',
+              }}
+            />
+            <Stack.Screen
+              name="Stats"
+              component={StatsScreen}
+              options={{
+                title: 'Statistics',
               }}
             />
           </Stack.Navigator>

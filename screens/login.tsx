@@ -11,6 +11,11 @@ const LoginScreen = ({navigation}: {navigation: object}) => {
         title="Login"
         onPress={() => navigation.navigate('Workouts')}
       />
+      <Button
+        style={styles.button}
+        title="Stats"
+        onPress={() => navigation.navigate('Stats')}
+      />
     </View>
   );
 };
@@ -34,6 +39,7 @@ const styles = StyleSheet.create({
     padding: 24,
     borderRadius: 8,
     overflow: 'hidden',
+    marginBottom: 16,
   },
 });
 

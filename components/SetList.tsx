@@ -1,8 +1,16 @@
 import {View, FlatList, StyleSheet, Text} from 'react-native';
-import {Swipeable} from 'react-native-gesture-handler';
+// import {Swipeable} from 'react-native-gesture-handler';
 import SetListItem from './SetListItem';
 
-const SetList = ({sets, setVideo}: {sets: object; setVideo: string}) => {
+const SetList = ({
+  sets,
+  setVideo,
+  handleSave,
+}: {
+  sets: object;
+  setVideo: string;
+  handleSave: Function;
+}) => {
   const expandSetReps = (sets: Array<object>) => {
     let newSets = new Array();
     for (let i = 0; i < sets.length; i++) {
@@ -17,6 +25,7 @@ const SetList = ({sets, setVideo}: {sets: object; setVideo: string}) => {
       data={expandSetReps(sets)}
       renderItem={({item}) => (
         <SetListItem
+          handleSave={handleSave}
           setVideo={setVideo}
           reps={item.reps}
           setType={item.type}

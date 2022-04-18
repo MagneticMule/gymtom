@@ -27,6 +27,7 @@ const SwipeLeftActions = (progress, dragX) => {
   );
 };
 const SetListItem = ({
+  handleSave,
   reps,
   setType,
   exercises,
@@ -34,6 +35,7 @@ const SetListItem = ({
   completed,
   id,
 }: {
+  handleSave: Function;
   reps: number;
   setType: string;
   exercises: Array<any>;
@@ -42,8 +44,6 @@ const SetListItem = ({
   id: number;
 }) => {
   const [isActive, setIsActive] = useState(true);
-  console.log({isActive});
-  console.log({exercises});
   return (
     /*Encapsulating Swipeable in a <GestureHandlerRootView> is needed for Android. IOS works fine without it*/
     <GestureHandlerRootView>
@@ -108,11 +108,11 @@ const ExerciseListItem = ({
         <Text style={styles.exerciseIntroduction}>
           {exercise?.introduction}
         </Text>
-        {exercise?.steps.map((step, index) => (
+        {exercise?.steps?.map((step, index) => (
           <View
             key={index}
             style={
-              index >= exercise.steps.length
+              index >= exercise?.steps?.length
                 ? styles.exerciseStepContainerIsLast
                 : styles.exerciseStepContainer
             }>
@@ -120,7 +120,7 @@ const ExerciseListItem = ({
             <Text style={styles.exerciseStep}>{step}</Text>
           </View>
         ))}
-        <ExerciseInputs />
+        <ExerciseInputs exercise={exercise} />
       </View>
     </TouchableOpacity>
   );

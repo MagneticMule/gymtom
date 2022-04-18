@@ -24,7 +24,7 @@ const ExerciseListItem = ({
         setVideo(exercise?.CloudVideo?.secure_url);
       }}>
       <View>
-        <Text style={styles.title}>{exercise?.excerciseName.trim()}</Text>
+        <Text style={styles.title}>{exercise?.excerciseName?.trim()}</Text>
         <Text style={styles.exerciseIntroduction}>
           {exercise?.introduction}
         </Text>
@@ -32,7 +32,7 @@ const ExerciseListItem = ({
           <View
             key={index}
             style={
-              index >= exercise.steps.length
+              index >= exercise?.steps?.length
                 ? styles.exerciseStepContainerIsLast
                 : styles.exerciseStepContainer
             }>

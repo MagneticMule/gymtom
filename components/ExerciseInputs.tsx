@@ -1,7 +1,12 @@
-import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
 
-const ExerciseInputs = ({}) => {
+const ExerciseInputs = (exercise: Array<any>) => {
+  const exerciseName = exercise?.excerciseName?.trim();
+  const [weight, setWeight] = useState(null);
+  const [reps, setReps] = useState(null);
+  const validateInput = () => {};
+  const onFinish = (exercise, weight, reps) => {};
   return (
     <View style={styles.container}>
       <Text style={styles.label}>+Weight</Text>
@@ -11,6 +16,7 @@ const ExerciseInputs = ({}) => {
         defaultValue={'10'}
         keyboardType={'numeric'}
         style={styles.input}
+        onChangeText={setWeight}
       />
       <Text style={styles.label}>Reps</Text>
       <TextInput
@@ -19,6 +25,13 @@ const ExerciseInputs = ({}) => {
         defaultValue={'8'}
         keyboardType={'numeric'}
         style={styles.input}
+        onChangeText={setReps}
+      />
+      <Button
+        disabled={!(weight && reps)}
+        style={styles.button}
+        title="Finish"
+        onPress={() => onFinish(exerciseName, weight, reps)}
       />
     </View>
   );
