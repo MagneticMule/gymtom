@@ -18,14 +18,13 @@ const TextSlider = ({levels = defaultLevels, labelText}, ...args) => {
   const springIn = () => {
     springVal.setValue(1);
     Animated.timing(springVal, {
-      toValue: 1.5,
+      toValue: 1.2,
       duration: 90,
       useNativeDriver: true,
     }).start();
   };
 
   const springOut = () => {
-    springVal.setValue(1.5);
     Animated.spring(springVal, {
       toValue: 1,
       friction: 2,
@@ -38,34 +37,34 @@ const TextSlider = ({levels = defaultLevels, labelText}, ...args) => {
   };
 
   return (
-    <>
-      <View style={styles.sliderContainer}>
-        <Text style={styles.label}>
-          {labelText} is{'   '}
-          <Animated.View
-            style={[{transform: [{scale: springVal}]}, styles.levelContainer]}>
-            {sliderVal}
-          </Animated.View>
-        </Text>
-        <Slider
-          style={{height: 40}}
-          minimumValue={0}
-          maximumValue={levels.length - 1}
-          step={1}
-          minimumTrackTintColor="#FFFFFF"
-          maximumTrackTintColor="#000000"
-          onValueChange={value => handleSliderChange(value)}
-          onSlidingStart={value => springIn()}
-          onSlidingComplete={value => springOut()}
-        />
+    <View style={styles.sliderContainer}>
+      <View style={styles.feedbackContainer}>
+        <Text style={styles.label}>{labelText} is </Text>
+        <Animated.Text
+          style={[{transform: [{scale: springVal}]}, styles.levelContainer]}>
+          {sliderVal}
+        </Animated.Text>
       </View>
-    </>
+      <Slider
+        style={{height: 40}}
+        minimumValue={0}
+        maximumValue={levels.length - 1}
+        step={1}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        onValueChange={value => handleSliderChange(value)}
+        onSlidingStart={value => springIn()}
+        onSlidingComplete={value => springOut()}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  feedbackContainer: {flexDirection: 'row', alignItems: 'center'},
   levelContainer: {
     backgroundColor: 'red',
+    fontWeight: 'bold',
     color: 'white',
     padding: 8,
     borderRadius: 8,
