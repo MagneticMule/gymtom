@@ -2,13 +2,15 @@ import * as React from 'react';
 import {LogBox, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Appearance} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import LoginScreen from './screens/login';
 import WorkoutListScreen from './screens/workouts';
 import WorkoutScreen from './screens/workout';
 import SetListScreen from './screens/sets';
-import StatsScreen from './screens/stats';
-import {Appearance} from 'react-native';
+import HistoryScreen from './screens/history';
+import SignupForm from './screens/signup-form';
+
 
 import {
   useFonts,
@@ -95,10 +97,17 @@ const App = () => {
               }}
             />
             <Stack.Screen
-              name="Stats"
-              component={StatsScreen}
+              name="Progress"
+              component={HistoryScreen}
               options={{
-                title: 'Statistics',
+                title: 'Progress',
+              }}
+            />
+            <Stack.Screen
+              name="Signup"
+              component={SignupForm}
+              options={{
+                title: 'All about you',
               }}
             />
           </Stack.Navigator>

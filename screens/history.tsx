@@ -2,7 +2,7 @@ import {View, FlatList, StyleSheet, Text} from 'react-native';
 import {useEffect, useState} from 'react';
 import {LoadProgress} from '../lib/localStore';
 
-const StatsScreen = () => {
+const HistoryScreen = () => {
   const [history, setHistory] = useState({});
   useEffect(() => {
     const load = async () => {
@@ -23,4 +23,4 @@ const StatsScreen = () => {
   );
 };
 
-export default StatsScreen;
+export default HistoryScreen;

@@ -1,42 +1,39 @@
 import * as React from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 
-const LoginScreen = ({navigation}: {navigation: object}) => {
+const LoginScreen = ({navigation}: {navigation: any}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>GYMTOM</Text>
       <Text style={styles.subTitle}>Progress Over Perfection</Text>
-      <Button
-        style={styles.button}
-        title="Login"
-        onPress={() => navigation.navigate('Workouts')}
-      />
-      <Button
-        style={styles.button}
-        title="Stats"
-        onPress={() => navigation.navigate('Stats')}
-      />
+      <View style={styles.button}>
+        <Button title="Login" onPress={() => navigation.navigate('Workouts')} />
+      </View>
+      <View style={styles.button}>
+        <Button title="Stats" onPress={() => navigation.navigate('Stats')} />
+      </View>
+      <View style={styles.button}>
+        <Button title="Sign Up" onPress={() => navigation.navigate('Signup')} />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, justifyContent: 'center', padding: 40},
+  container: {flex: 1, justifyContent: 'center', padding: 40, maxWidth: 400},
   title: {
     fontSize: 48,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'lightblue',
+    color: 'darkblue',
   },
   subTitle: {
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 200,
-    color: 'lightblue',
+    color: 'darkblue',
   },
   button: {
-    backgroundColor: '#232388',
-    padding: 24,
     borderRadius: 8,
     overflow: 'hidden',
     marginBottom: 16,
