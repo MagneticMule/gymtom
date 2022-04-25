@@ -19,7 +19,7 @@ const TextSlider = ({levels = defaultLevels, labelText}, ...args) => {
     springVal.setValue(1);
     Animated.timing(springVal, {
       toValue: 1.2,
-      duration: 90,
+      duration: 60,
       useNativeDriver: true,
     }).start();
   };
@@ -27,7 +27,7 @@ const TextSlider = ({levels = defaultLevels, labelText}, ...args) => {
   const springOut = () => {
     Animated.spring(springVal, {
       toValue: 1,
-      friction: 2,
+      friction: 1.2,
       useNativeDriver: true,
     }).start();
   };
@@ -39,18 +39,18 @@ const TextSlider = ({levels = defaultLevels, labelText}, ...args) => {
   return (
     <View style={styles.sliderContainer}>
       <View style={styles.feedbackContainer}>
-        <Text style={styles.label}>{labelText} is </Text>
+        <Text style={styles.label}>{labelText}</Text>
         <Animated.Text
           style={[{transform: [{scale: springVal}]}, styles.levelContainer]}>
           {sliderVal}
         </Animated.Text>
       </View>
       <Slider
-        style={{height: 40}}
+        style={{height: 60}}
         minimumValue={0}
         maximumValue={levels.length - 1}
         step={1}
-        minimumTrackTintColor="#FFFFFF"
+        minimumTrackTintColor="#ababab"
         maximumTrackTintColor="#000000"
         onValueChange={value => handleSliderChange(value)}
         onSlidingStart={value => springIn()}
@@ -61,16 +61,28 @@ const TextSlider = ({levels = defaultLevels, labelText}, ...args) => {
 };
 
 const styles = StyleSheet.create({
-  feedbackContainer: {flexDirection: 'row', alignItems: 'center'},
+  feedbackContainer: {flexDirection: 'column', alignItems: 'center'},
   levelContainer: {
-    backgroundColor: 'red',
+    textTransform: 'uppercase',
+    // backgroundColor: '#dedeff',
+    fontSize: 16,
     fontWeight: 'bold',
-    color: 'white',
-    padding: 8,
+    color: '#232323',
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingRight: 12,
+    paddingLeft: 12,
     borderRadius: 8,
+    // borderColor: '#ababff',
+    // borderWidth: 1,
   },
-  sliderContainer: {},
-  label: {},
+  sliderContainer: {
+    marginBottom: 32,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    padding: 16,
+  },
+  label: {textTransform: 'uppercase', fontSize: 18, marginBottom: 8},
 });
 
 export default TextSlider;
