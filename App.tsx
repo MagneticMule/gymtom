@@ -11,7 +11,6 @@ import SetListScreen from './screens/sets';
 import HistoryScreen from './screens/history';
 import SignupForm from './screens/signup-form';
 
-
 import {
   useFonts,
   Montserrat_100Thin,
@@ -70,10 +69,9 @@ const App = () => {
               name="Login"
               component={LoginScreen}
               options={{
-                title: "Let's get you started",
+                headerShown: false,
               }}
             />
-
             <Stack.Screen
               name="Workouts"
               component={WorkoutListScreen}
