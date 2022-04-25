@@ -74,7 +74,7 @@ const SignupForm = ({navigation}: {navigation: any}) => {
           <TextSlider labelText="Improved Muscle Mass 💪🏻" />
           <TextSlider labelText="Fat Loss 🏆" />
           <TextSlider labelText="Weight Gain 🍉" />
-          <TextSlider labelText="Sport Specific 🏸" />
+          {/* <TextSlider labelText="Sport Specific 🏸" /> */}
         </View>
         <View style={[styles.section, styles.lightSection]}>
           <View style={styles.button}>
