@@ -4,6 +4,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Appearance} from 'react-native';
 import AppLoading from 'expo-app-loading';
+
+import {NativeBaseProvider, Text, Box} from 'native-base';
+
 import LoginScreen from './screens/login';
 import WorkoutListScreen from './screens/workouts';
 import WorkoutScreen from './screens/workout';
@@ -32,6 +35,12 @@ import {
   Montserrat_900Black,
   Montserrat_900Black_Italic,
 } from '@expo-google-fonts/montserrat';
+
+const nativeBaseConfig = {
+  dependencies: {
+    'linear-gradient': require('expo-linear-gradient').LinearGradient,
+  },
+};
 
 LogBox.ignoreAllLogs();
 const Stack = createNativeStackNavigator();
@@ -62,55 +71,57 @@ const App = () => {
     return <AppLoading />;
   } else {
     return (
-      <View style={{flex: 1}}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="Workouts"
-              component={WorkoutListScreen}
-              options={{
-                title: 'Workouts',
-              }}
-            />
+      <NativeBaseProvider config={nativeBaseConfig}>
+        <View style={{flex: 1}}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="Workouts"
+                component={WorkoutListScreen}
+                options={{
+                  title: 'Workouts',
+                }}
+              />
 
-            <Stack.Screen
-              name="Workout"
-              component={WorkoutScreen}
-              options={{
-                title: 'Workout',
-              }}
-            />
-            <Stack.Screen
-              name="Sets"
-              component={SetListScreen}
-              options={{
-                title: 'SetList',
-              }}
-            />
-            <Stack.Screen
-              name="Progress"
-              component={HistoryScreen}
-              options={{
-                title: 'Progress',
-              }}
-            />
-            <Stack.Screen
-              name="Signup"
-              component={SignupForm}
-              options={{
-                title: 'All about you',
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+              <Stack.Screen
+                name="Workout"
+                component={WorkoutScreen}
+                options={{
+                  title: 'Workout',
+                }}
+              />
+              <Stack.Screen
+                name="Sets"
+                component={SetListScreen}
+                options={{
+                  title: 'SetList',
+                }}
+              />
+              <Stack.Screen
+                name="Progress"
+                component={HistoryScreen}
+                options={{
+                  title: 'Progress',
+                }}
+              />
+              <Stack.Screen
+                name="Signup"
+                component={SignupForm}
+                options={{
+                  title: 'All about you',
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </NativeBaseProvider>
     );
   }
 };
