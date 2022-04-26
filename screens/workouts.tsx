@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
-
+import {StatusBar} from 'expo-status-bar';
 import sanity from '../lib/sanity';
 import WorkoutListItem from '../components/WorkoutListItem';
 
@@ -38,6 +38,7 @@ const WorkoutListScreen = ({navigation}: {navigation: any}) => {
   }, []);
   return (
     <View style={styles.container} safeAreaTop>
+      <StatusBar style="dark" />
       <FlatList
         data={workouts}
         renderItem={({item}) => (
