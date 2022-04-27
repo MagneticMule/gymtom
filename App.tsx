@@ -14,6 +14,7 @@ import SetListScreen from './screens/sets';
 import HistoryScreen from './screens/history';
 import SignupForm from './screens/signup-form';
 
+
 import {
   useFonts,
   Montserrat_100Thin,
@@ -70,6 +71,8 @@ const App = () => {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
+    // const {user} = useAuthentication();
+
     return (
       <NativeBaseProvider config={nativeBaseConfig}>
         <View style={{flex: 1}}>
@@ -89,7 +92,6 @@ const App = () => {
                   title: 'Workouts',
                 }}
               />
-
               <Stack.Screen
                 name="Workout"
                 component={WorkoutScreen}

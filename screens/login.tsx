@@ -1,15 +1,59 @@
 import * as React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
-import {Image, Center, Button, Stack, Input, Link, Box} from 'native-base';
+import '../config/firebase';
+import {
+  Image,
+  Center,
+  Button,
+  Stack,
+  Input,
+  Link,
+  Box,
+  Icon,
+} from 'native-base';
+import {MaterialIcons} from '@expo/vector-icons';
 import logo from '../assets/gymtom-title.png';
+import {useState} from 'react';
+import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 const LoginScreen = ({navigation}: {navigation: any}) => {
+  const [show, setShow] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const auth = getAuth();
+  const handleLogin = () => {
+    console.log('Starting logging in');
+    if (email && password) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user.email);
+          navigation.navigate('Workouts');
+        })
+        .catch(error => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + ' ' + errorMessage);
+        });
+      setError('We need your email and a password');
+    }
+  };
+
   return (
-    <Center backgroundColor={'purple.700'} flex={1}>
+    <Center
+      bg={{
+        linearGradient: {
+          colors: ['purple.500', 'violet.800'],
+          start: [1, 0],
+          end: [0, 1],
+        },
+      }}
+      flex={1}>
       <StatusBar style="light" />
       <Image source={logo} size={'2xl'} />
-      {/* <Text style={styles.title}>GYMTOM</Text>
-      <Text style={styles.subTitle}>Progress Over Perfection</Text> */}
       <Stack
         direction={{
           base: 'column',
@@ -17,19 +61,46 @@ const LoginScreen = ({navigation}: {navigation: any}) => {
         space={4}
         marginBottom={'12'}>
         <Input
-          color={'amber.100'}
-          selectionColor={'amber.300'}
+          onChangeText={text => {
+            setEmail(text);
+          }}
+          type={'text'}
+          InputLeftElement={
+            <Icon
+              as={<MaterialIcons name="mail" />}
+              size={5}
+              ml="2"
+              color="muted.300"
+            />
+          }
+          color="muted.300"
+          selectionColor={'muted.100'}
           size="lg"
           width={'260'}
-          placeholder="Name"
+          placeholder="Email"
         />
         <Input
-          color={'amber.100'}
-          selectionColor={'amber.300'}
+          onChangeText={text => {
+            setPassword(text);
+          }}
+          color={'muted.100'}
+          selectionColor={'muted.300'}
           size="lg"
-          width={'260'}
-          placeholder="Password"
           type={'password'}
+          width={'260'}
+          type={show ? 'text' : 'password'}
+          InputRightElement={
+            <Icon
+              as={
+                <MaterialIcons name={show ? 'visibility' : 'visibility-off'} />
+              }
+              size={5}
+              mr="2"
+              color="muted.300"
+              onPress={() => setShow(!show)}
+            />
+          }
+          placeholder="Password"
         />
       </Stack>
       <Stack
@@ -39,12 +110,12 @@ const LoginScreen = ({navigation}: {navigation: any}) => {
         }}
         space={4}>
         <Button
-          shadow={'2'}
           // variant="outline"
           colorScheme="purple"
           size={'lg'}
           width={'260'}
-          onPress={() => navigation.navigate('Workouts')}>
+          // onPress={() => navigation.navigate('Workouts')}>
+          onPress={() => handleLogin()}>
           <Text style={styles.buttonText}>Login</Text>
         </Button>
 
