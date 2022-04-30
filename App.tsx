@@ -2,18 +2,13 @@ import * as React from 'react';
 import {LogBox, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Appearance} from 'react-native';
 import AppLoading from 'expo-app-loading';
 
-import {NativeBaseProvider, Text, Box} from 'native-base';
+import {NativeBaseProvider} from 'native-base';
 
-import LoginScreen from './screens/login';
-import WorkoutListScreen from './screens/workouts';
-import WorkoutScreen from './screens/workout';
-import SetListScreen from './screens/sets';
-import HistoryScreen from './screens/history';
-import SignupForm from './screens/signup-form';
+import {UserContext, UserProvider} from './utils/contexts/user-context';
 
+import AppStack from './navigation/app-stack';
 
 import {
   useFonts,
@@ -44,9 +39,13 @@ const nativeBaseConfig = {
 };
 
 LogBox.ignoreAllLogs();
+
 const Stack = createNativeStackNavigator();
+
 const App = () => {
-  console.log(Appearance.getColorScheme());
+  const value = React.useContext(UserContext);
+  console.log(value);
+  // console.log(Appearance.getColorScheme());
   LogBox.ignoreLogs(['Setting a timer']);
   let [fontsLoaded] = useFonts({
     Montserrat_100Thin,
@@ -71,59 +70,16 @@ const App = () => {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    // const {user} = useAuthentication();
-
     return (
-      <NativeBaseProvider config={nativeBaseConfig}>
-        <View style={{flex: 1}}>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Login"
-                component={LoginScreen}
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="Workouts"
-                component={WorkoutListScreen}
-                options={{
-                  title: 'Workouts',
-                }}
-              />
-              <Stack.Screen
-                name="Workout"
-                component={WorkoutScreen}
-                options={{
-                  title: 'Workout',
-                }}
-              />
-              <Stack.Screen
-                name="Sets"
-                component={SetListScreen}
-                options={{
-                  title: 'SetList',
-                }}
-              />
-              <Stack.Screen
-                name="Progress"
-                component={HistoryScreen}
-                options={{
-                  title: 'Progress',
-                }}
-              />
-              <Stack.Screen
-                name="Signup"
-                component={SignupForm}
-                options={{
-                  title: 'All about you',
-                }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </View>
-      </NativeBaseProvider>
+      <UserProvider>
+        <NativeBaseProvider config={nativeBaseConfig}>
+          <View style={{flex: 1}}>
+            <NavigationContainer>
+              <AppStack />
+            </NavigationContainer>
+          </View>
+        </NativeBaseProvider>
+      </UserProvider>
     );
   }
 };

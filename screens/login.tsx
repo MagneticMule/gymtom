@@ -11,34 +11,60 @@ import {
   Link,
   Box,
   Icon,
+  FormControl,
+  KeyboardAvoidingView,
 } from 'native-base';
 import {MaterialIcons} from '@expo/vector-icons';
 import logo from '../assets/gymtom-title.png';
 import {useState} from 'react';
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
+import {useContext} from 'react';
+import {UserContext} from '../utils/contexts/user-context';
+import LoggedInStack from '../navigation/logged-in-stack';
+import LoggedOutStack from '../navigation/logged-out-stack';
+
 const LoginScreen = ({navigation}: {navigation: any}) => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const [, setUser] = useContext(UserContext);
   const auth = getAuth();
+
+  const validateInput = () => {
+    const emailRegEx =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const validEmail = emailRegEx.exec(email);
+    const validPassword = password.length > 8;
+    return validEmail && validPassword;
+  };
+
   const handleLogin = () => {
     console.log('Starting logging in');
     if (email && password) {
-      signInWithEmailAndPassword(auth, email, password)
+      signInWithEmailAndPassword(
+        auth,
+        email.trimStart().trim(),
+        password.trimStart().trim(),
+      )
         .then(userCredential => {
           // Signed in
           const user = userCredential.user;
           console.log(user.email);
-          navigation.navigate('Workouts');
+          setUser({
+            isLoggedIn: true,
+            email: user.email,
+          });
         })
         .catch(error => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode + ' ' + errorMessage);
+          const errorText =
+            'OOPS! there is a problem ' + errorMessage + ' ' + errorCode;
+          console.log(errorText);
+          setError(errorText);
         });
-      setError('We need your email and a password');
     }
   };
 
@@ -70,51 +96,59 @@ const LoginScreen = ({navigation}: {navigation: any}) => {
               as={<MaterialIcons name="mail" />}
               size={5}
               ml="2"
-              color="muted.300"
+              color="muted.100"
             />
           }
-          color="muted.300"
-          selectionColor={'muted.100'}
+          color="muted.100"
+          selectionColor={'muted.200'}
+          placeholderTextColor={'muted.300'}
+          focusOutlineColor={'muted.100'}
           size="lg"
           width={'260'}
           placeholder="Email"
         />
-        <Input
-          onChangeText={text => {
-            setPassword(text);
-          }}
-          color={'muted.100'}
-          selectionColor={'muted.300'}
-          size="lg"
-          type={'password'}
-          width={'260'}
-          type={show ? 'text' : 'password'}
-          InputRightElement={
-            <Icon
-              as={
-                <MaterialIcons name={show ? 'visibility' : 'visibility-off'} />
-              }
-              size={5}
-              mr="2"
-              color="muted.300"
-              onPress={() => setShow(!show)}
-            />
-          }
-          placeholder="Password"
-        />
+        <FormControl isRequired>
+          <Input
+            onChangeText={text => {
+              setPassword(text);
+            }}
+            color={'muted.100'}
+            selectionColor={'muted.200'}
+            placeholderTextColor={'muted.300'}
+            focusOutlineColor={'muted.100'}
+            size="lg"
+            type={'password'}
+            width={'260'}
+            type={show ? 'text' : 'password'}
+            InputRightElement={
+              <Icon
+                as={
+                  <MaterialIcons
+                    name={show ? 'visibility' : 'visibility-off'}
+                  />
+                }
+                size={5}
+                mr="2"
+                color="muted.100"
+                onPress={() => setShow(!show)}
+              />
+            }
+            placeholder="Password"
+          />
+        </FormControl>
       </Stack>
       <Stack
         direction={{
           base: 'column',
-          md: 'row',
+          md: 'column',
         }}
         space={4}>
         <Button
-          // variant="outline"
-          colorScheme="purple"
+          colorScheme="red"
+          isDisabled={!validateInput()}
           size={'lg'}
           width={'260'}
-          // onPress={() => navigation.navigate('Workouts')}>
+          shadow={8}
           onPress={() => handleLogin()}>
           <Text style={styles.buttonText}>Login</Text>
         </Button>
