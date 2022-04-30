@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {LogBox, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AppLoading from 'expo-app-loading';
-
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import {NativeBaseProvider} from 'native-base';
 
 import {UserContext, UserProvider} from './utils/contexts/user-context';
@@ -40,11 +39,8 @@ const nativeBaseConfig = {
 
 LogBox.ignoreAllLogs();
 
-const Stack = createNativeStackNavigator();
-
 const App = () => {
-  const value = React.useContext(UserContext);
-  console.log(value);
+  const Stack = createStackNavigator();
   // console.log(Appearance.getColorScheme());
   LogBox.ignoreLogs(['Setting a timer']);
   let [fontsLoaded] = useFonts({
@@ -75,7 +71,7 @@ const App = () => {
         <NativeBaseProvider config={nativeBaseConfig}>
           <View style={{flex: 1}}>
             <NavigationContainer>
-              <AppStack />
+              <AppStack Stack={Stack} />
             </NavigationContainer>
           </View>
         </NativeBaseProvider>

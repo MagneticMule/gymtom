@@ -8,6 +8,7 @@ const UserProvider = ({children}) => {
       value={useState({
         isLoggedIn: false,
         email: 'george@thebeatles.com',
+        id: '1234567890',
       })}>
       {children}
     </UserContext.Provider>

@@ -20,10 +20,8 @@ import {useState} from 'react';
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import {useContext} from 'react';
 import {UserContext} from '../utils/contexts/user-context';
-import LoggedInStack from '../navigation/logged-in-stack';
-import LoggedOutStack from '../navigation/logged-out-stack';
 
-const LoginScreen = ({navigation}: {navigation: any}) => {
+const LoginScreen = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,10 +49,11 @@ const LoginScreen = ({navigation}: {navigation: any}) => {
         .then(userCredential => {
           // Signed in
           const user = userCredential.user;
-          console.log(user.email);
+          console.log(user);
           setUser({
             isLoggedIn: true,
             email: user.email,
+            id: user.uid,
           });
         })
         .catch(error => {

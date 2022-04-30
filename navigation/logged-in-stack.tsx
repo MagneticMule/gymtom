@@ -1,11 +1,9 @@
-import {createStackNavigator} from '@react-navigation/stack';
-import WorkoutListScreen from '../screens/workouts';
-import WorkoutScreen from '../screens/workout';
-import SetListScreen from '../screens/sets';
-import HistoryScreen from '../screens/history';
+import WorkoutListScreen from '../screens/workouts-list-screen';
+import WorkoutScreen from '../screens/workout-screen';
+import SetListScreen from '../screens/sets-screen';
+import HistoryScreen from '../screens/history-screen';
 
-const LoggedInStack = () => {
-  const Stack = createStackNavigator();
+const LoggedInStack = ({Stack}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
