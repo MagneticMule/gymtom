@@ -40,7 +40,7 @@ const WorkoutScreen = ({
   route,
   level,
 }: {
-  route: string;
+  route: any;
   navigation: any;
   level: number;
 }) => {
