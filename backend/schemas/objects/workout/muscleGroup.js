@@ -1,0 +1,83 @@
+export default {
+  title: 'Muscle Groups',
+  name: 'muscleGroup',
+  type: 'object',
+  fieldsets: [
+    {
+      name: 'general',
+      title: 'General Muscle Groups',
+      options: { collapsible: false, collapsed: false, columns: 1 },
+    },
+    {
+      name: 'specific',
+      title: 'Specific Muscle Groups',
+      options: { collapsible: false, collapsed: false, columns: 2 },
+    },
+  ],
+  fields: [
+    {
+      name: 'general',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        direction: 'horizontal',
+        list: [
+          { title: 'Chest', value: 'chest' },
+          { title: 'Arms', value: 'arms' },
+          { title: 'Shoulders', value: 'shoulders' },
+          { title: 'Back', value: 'back' },
+          { title: 'Stomach', value: 'stomach' },
+          { title: 'Legs', value: 'legs' },
+        ],
+      },
+    },
+    {
+      name: 'primary',
+      type: 'array',
+      fieldset: 'specific',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Deltoids', value: 'deltoids' },
+          { title: 'Biceps', value: 'biceps' },
+          { title: 'Triceps', value: 'triceps' },
+          { title: 'Pectorials', value: 'pectorals' },
+          { title: 'Forearms', value: 'foreArms' },
+          { title: 'Side abs', value: 'sideAbs' },
+          { title: 'Abdominals', value: 'abdominals' },
+          { title: 'Quadriceps', value: 'quadriceps' },
+          { title: 'Trapezius', value: 'trapezius' },
+          { title: 'Tibialis Anterior', value: 'tibialisAnterior' },
+          { title: 'Glutes', value: 'glutes' },
+          { title: 'Hamstrings', value: 'hamstrings' },
+          { title: 'Calves', value: 'calves' },
+          { title: 'Lats', value: 'lats' },
+        ],
+      },
+    },
+    {
+      name: 'secondary',
+      type: 'array',
+      fieldset: 'specific',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Deltoids', value: 'deltoids' },
+          { title: 'Biceps', value: 'biceps' },
+          { title: 'Triceps', value: 'triceps' },
+          { title: 'Pectorials', value: 'pectorals' },
+          { title: 'Forearms', value: 'foreArms' },
+          { title: 'Side abs', value: 'sideAbs' },
+          { title: 'Abdominals', value: 'abdominals' },
+          { title: 'Quadriceps', value: 'quadriceps' },
+          { title: 'Trapezius', value: 'trapezius' },
+          { title: 'Tibialis Anterior', value: 'tibialisAnterior' },
+          { title: 'Glutes', value: 'glutes' },
+          { title: 'Hamstrings', value: 'hamstrings' },
+          { title: 'Calves', value: 'calves' },
+          { title: 'Lats', value: 'lats' },
+        ],
+      },
+    },
+  ],
+};
