@@ -62,7 +62,7 @@ const LoginScreen = () => {
           const errorText =
             'OOPS! there is a problem ' + errorMessage + ' ' + errorCode;
           console.log(errorText);
-          setError(errorText);
+          setError(errorCode, errorText);
         });
     }
   };

@@ -1,6 +1,6 @@
-let countDownTimer = td => {
+let countDownTimer = d => {
   //expects date in format of '2021-04-15'
-  const targetDate = +new Date(td);
+  const targetDate = +new Date(d);
   const currentDate = +new Date();
   let difference = targetDate - currentDate;
   if (difference > 0) {
