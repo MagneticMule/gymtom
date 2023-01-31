@@ -1,9 +1,3 @@
-// First, we must import the schema creator
-import createSchema from 'part:@sanity/base/schema-creator';
-
-// Then import schema types from any plugins that might expose them
-import schemaTypes from 'all:part:@sanity/base/schema-type';
-
 // => object schemas
 import businessDetails from './objects/businessDetails';
 import hero from './objects/hero';
@@ -50,51 +44,44 @@ import page from './documents/page';
 // => blog
 import post from './documents/blog/post';
 
-// Then we give our schema to the builder and provide the result to Sanity
-export default createSchema({
-  // We name our schema
-  name: 'default',
-  // Then proceed to concatenate our document type
-  // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([
-    /* Your types here! */
-    staffMember,
-    client,
-    page,
-    businessDetails,
-    hero,
-    heroTitle,
-    cta,
-    news,
-    membership,
 
-    video,
-    social,
+export default [
+  staffMember,
+  client,
+  page,
+  businessDetails,
+  hero,
+  heroTitle,
+  cta,
+  news,
+  membership,
 
-    instagram,
-    alert,
-    fitnessClass,
+  video,
+  social,
 
-    // blog
-    post,
-    mainImage,
-    authorReference,
-    bodyPortableText,
-    bioPortableText,
+  instagram,
+  alert,
+  fitnessClass,
 
-    // workout
-    course,
-    workout,
-    plan,
-    set,
-    excercise,
-    muscleGroup,
-    target,
-    planBuilder,
-    setExcercise,
-    setBuilder,
-    repFields,
-    terminology,
-    lesson
-  ]),
-});
+  // blog
+  post,
+  mainImage,
+  authorReference,
+  bodyPortableText,
+  bioPortableText,
+
+  // workout
+  course,
+  workout,
+  plan,
+  set,
+  excercise,
+  muscleGroup,
+  target,
+  planBuilder,
+  setExcercise,
+  setBuilder,
+  repFields,
+  terminology,
+  lesson
+]

@@ -1,5 +1,6 @@
 export default {
   type: 'object',
+  title: ' Set Exercise',
   name: 'setExcercise',
   fields: [
     { title: 'Excercise', name: 'excerciseReference', type: 'reference', to: { type: 'excercise' } },

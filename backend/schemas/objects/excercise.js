@@ -99,16 +99,16 @@ export default {
       editModal: 'fullscreen',
       of: [{ type: 'text', rows: 3 }],
     },
-    {
-      name: 'note',
-      type: 'note',
-      options: {
-        icon: alertIcon,
-        headline: 'This is a Tip!',
-        message: `A tip will look something like this!`,
-        tone: 'positive'
-      }
-    },
+    // {
+    //   name: 'note',
+    //   type: 'note',
+    //   options: {
+    //     icon: alertIcon,
+    //     headline: 'This is a Tip!',
+    //     message: `A tip will look something like this!`,
+    //     tone: 'positive'
+    //   }
+    // },
     {
       title: 'Tips',
       description: 'Optional',

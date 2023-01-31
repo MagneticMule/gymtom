@@ -14,6 +14,17 @@ export default {
       description: `The course name will be displayed at the top of the page. Be descriptive here e.g. "8 Week weight buster"`,
     },
     {
+      title: 'Description',
+      name: 'description',
+      type: 'string'
+    },
+    {
+      title: 'Cover Image',
+      name: 'mainImage',
+      type: 'mainImage'
+
+    },
+    {
       title: 'Theory Lessons',
       name: 'lessons',
       type: 'array',

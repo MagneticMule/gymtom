@@ -1,4 +1,4 @@
-import { GrArticle as icon } from 'react-icons/gr';
+import { AiOutlineFileDone as icon } from 'react-icons/ai';
 export default {
   // Setup a 'document' type to house the page builder field
   title: 'Theory Lesson',

@@ -1,4 +1,4 @@
-import { BsPeopleCircle as icon } from 'react-icons/bs';
+import { BsPersonFill as icon } from 'react-icons/bs';
 
 export default {
   title: 'Client',
