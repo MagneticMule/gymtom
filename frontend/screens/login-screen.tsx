@@ -62,7 +62,7 @@ const LoginScreen = () => {
           const errorText =
             'OOPS! there is a problem ' + errorMessage + ' ' + errorCode;
           console.log(errorText);
-          setError(errorCode, errorText);
+          setError(`errorCode errorText`);
         });
     }
   };
@@ -116,7 +116,6 @@ const LoginScreen = () => {
             placeholderTextColor={'muted.300'}
             focusOutlineColor={'muted.100'}
             size="lg"
-            type={'password'}
             width={'260'}
             type={show ? 'text' : 'password'}
             InputRightElement={
@@ -152,24 +151,6 @@ const LoginScreen = () => {
           <Text style={styles.buttonText}>Login</Text>
         </Button>
 
-        {/* <Button
-          shadow={'2'}
-          // variant="outline"
-          colorScheme="green"
-          size={'lg'}
-          width={'260'}
-          onPress={() => navigation.navigate('Signup')}>
-          <Text style={styles.buttonText}>Your Details</Text>
-        </Button>
-        <Button
-          shadow={'2'}
-          variant="outline"
-          colorScheme="red"
-          size={'lg'}
-          width={'260'}
-          onPress={() => navigation.navigate('Stats')}>
-          <Text style={styles.buttonText}>ProgressS</Text>
-        </Button> */}
         <Box
           _text={{
             color: 'purple.100',
