@@ -1,6 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
-import {StatusBar} from 'expo-status-bar';
+import {
+  Image,
+  Center,
+  Button,
+  Stack,
+  Input,
+  Link,
+  Box,
+  Icon,
+  HStack,
+  IconButton,
+  FormControl,
+  KeyboardAvoidingView,
+  StatusBar,
+} from 'native-base';
+import {MaterialIcons} from '@expo/vector-icons';
 import sanity from '../lib/sanity';
 import WorkoutListItem from '../components/WorkoutListItem';
 
@@ -37,22 +52,23 @@ const WorkoutListScreen = ({navigation}: {navigation: any}) => {
       .catch(console.error);
   }, []);
   return (
-    <View style={styles.container} safeAreaTop>
-      <StatusBar style="dark" />
-      <FlatList
-        data={workouts}
-        renderItem={({item}) => (
-          <WorkoutListItem
-            title={item.name}
-            description={item.description}
-            image={item.image}
-            level={item.level}
-            sets={item.sets}
-            id={item.id}
-          />
-        )}
-      />
-    </View>
+    <>
+      <View style={styles.container} safeAreaTop>
+        <FlatList
+          data={workouts}
+          renderItem={({item}) => (
+            <WorkoutListItem
+              title={item.name}
+              description={item.description}
+              image={item.image}
+              level={item.level}
+              sets={item.sets}
+              id={item.id}
+            />
+          )}
+        />
+      </View>
+    </>
   );
 };
 

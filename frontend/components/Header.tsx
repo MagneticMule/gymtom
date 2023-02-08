@@ -12,7 +12,7 @@ const Header = ({title}: {title: string}) => {
 const styles = StyleSheet.create({
   container: {backgroundColor: '#252837', padding: 15, elevation: 8},
   heading: {
-    color: 'white',
+    color: 'blue',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'left',

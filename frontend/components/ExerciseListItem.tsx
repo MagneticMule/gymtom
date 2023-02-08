@@ -40,7 +40,7 @@ const ExerciseListItem = ({
             <Text style={styles.exerciseStep}>{step}</Text>
           </View>
         ))}
-        <ExerciseInputs />
+        {/* <ExerciseInputs /> */}
       </View>
     </TouchableOpacity>
   );
