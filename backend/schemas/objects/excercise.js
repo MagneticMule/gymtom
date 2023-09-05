@@ -123,10 +123,15 @@ export default {
     //   type: 'string',
     //   description: `Put a link to a youtube video here`,
     // },
+    // {
+    //   type: 'cloudinary.asset',
+    //   name: 'CloudVideo',
+    //   description: 'Use a video from our library or upload one of your own',
+    // },
     {
-      type: 'cloudinary.asset',
-      name: 'CloudVideo',
-      description: 'Use a video from our library or upload one of your own',
+      title: 'Video file',
+      name: 'video',
+      type: 'mux.video',
     },
     {
       title: 'Meta Tags',

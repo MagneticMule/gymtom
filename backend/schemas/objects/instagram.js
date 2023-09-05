@@ -27,12 +27,12 @@ export default {
         hotspot: true, // Make the image editable
       },
     },
-    {
-      title: 'Story Video',
-      type: 'cloudinary.asset',
-      name: 'instagramStory',
-      description: 'Add or upload an Video Instagram Story',
-    },
+    // {
+    //   title: 'Story Video',
+    //   type: 'cloudinary.asset',
+    //   name: 'instagramStory',
+    //   description: 'Add or upload an Video Instagram Story',
+    // },
     {
       title: 'Caption',
       name: 'caption',

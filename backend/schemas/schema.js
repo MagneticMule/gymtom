@@ -44,7 +44,7 @@ import page from './documents/page';
 // => blog
 import post from './documents/blog/post';
 
-
+// Then we give our schema to the builder and provide the result to Sanity
 export default [
   staffMember,
   client,
@@ -84,4 +84,4 @@ export default [
   repFields,
   terminology,
   lesson
-]
+];

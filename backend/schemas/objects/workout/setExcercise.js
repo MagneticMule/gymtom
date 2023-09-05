@@ -1,6 +1,5 @@
 export default {
   type: 'object',
-  title: ' Set Exercise',
   name: 'setExcercise',
   fields: [
     { title: 'Excercise', name: 'excerciseReference', type: 'reference', to: { type: 'excercise' } },
@@ -20,7 +19,7 @@ export default {
       const { title, minReps, maxReps, image } = selection;
       return {
         title: `${title} | ${minReps} - ${maxReps} Repetitions`,
-        media: image
+        media: image.asset
       }
     }
   },

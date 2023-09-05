@@ -1,4 +1,4 @@
-import { BsCardList as icon } from 'react-icons/bs';
+import { FiBookOpen as icon } from 'react-icons/fi';
 export default {
   // Setup a 'document' type to house the page builder field
   title: 'Course',
@@ -16,13 +16,14 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'string'
+      type: 'string',
+      validation: (Rule) => Rule.required().min(1).warning('Description should be longer than 2 characters'),
+      description: `A short description of this course`,
     },
     {
-      title: 'Cover Image',
       name: 'mainImage',
-      type: 'mainImage'
-
+      type: 'mainImage',
+      title: 'Main image',
     },
     {
       title: 'Theory Lessons',

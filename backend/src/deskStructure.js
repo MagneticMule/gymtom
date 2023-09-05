@@ -1,4 +1,4 @@
-// import S from '@sanity/desk-tool/structure-builder';
+
 import { BsFillInfoCircleFill as infoIcon } from 'react-icons/bs';
 import { CgGym as excerciseIcon } from 'react-icons/cg';
 import { GiWeightLiftingUp as workoutIcon } from 'react-icons/gi';
@@ -6,7 +6,7 @@ import { BsSun as workoutBuilderIcon } from 'react-icons/bs';
 import { RiCalendarTodoLine as planIcon } from 'react-icons/ri';
 import { BsCardList as courseIcon } from 'react-icons/bs';
 import { GoBook as dictionaryIcon } from 'react-icons/go';
-import { SiSololearn as lessonIcon } from 'react-icons/si';
+import { BiBookBookmark as lessonIcon } from 'react-icons/bi';
 export default (S) =>
   S.list()
     .title('GymTom Course Platform')

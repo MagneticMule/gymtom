@@ -1,4 +1,4 @@
-import { AiOutlineFileDone as icon } from 'react-icons/ai';
+import { BiBookBookmark as icon } from 'react-icons/bi';
 export default {
   // Setup a 'document' type to house the page builder field
   title: 'Theory Lesson',
